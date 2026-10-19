@@ -1,0 +1,13 @@
+[Unit]
+Description=wacdp dedicated Chromium (CDP on :9429)
+Wants=network-online.target wacdp-forwarder.service
+After=network-online.target wacdp-forwarder.service
+
+[Service]
+Type=simple
+ExecStart=/home/hatch/workspace/wacdp/run-chrome.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

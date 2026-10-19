@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "wacdp-inbox-watch",
+  "enabled": true,
+  "script_path": "~/hooks/scripts/wacdp-inbox-watch.sh",
+  "prompt": "New WhatsApp unread event(s) from the wacdp daemon's webhook inbox (payload in the event). Each chat has who (chat title), sender (who wrote the latest message in a group; '' for 1:1 chats or unknown), preview, unread count. Triage policy, approved by Ahmed 2026-10-12: auto-react THUMBS-UP to simple acknowledgements, summarize everything else. NEVER send messages — auto-reply is not approved.\n\nFor each chat in payload.chats:\n- Read the preview and sender. If it is clearly a simple acknowledgement or pleasantry (thanks, ok, got it, sounds good, 👍, etc.), react: WA_CDP_HTTP=http://127.0.0.1:9429 python3 ~/workspace/wacdp/react_to_message.py --contact \"<who, exact chat title>\" --needle \"<a distinctive substring of the preview>\" (emoji defaults to 👍). Retry at most once on failure.\n- Otherwise — questions, requests, anything needing Ahmed's eyes — hold it for the summary.\n- When in doubt whether a preview is a simple ack: do NOT react, summarize instead.\n\nReport in your execute summary, concisely: one line per reacted chat (\"Reacted 👍 to <sender or who>: <preview>\"), then a short summary of the chats needing Ahmed's attention (sender + who + preview each), then any failures. The main agent will surface the summary to Ahmed; keep routine all-reacted runs brief.",
+  "poll_interval_secs": 60,
+  "script_timeout_secs": 600,
+  "delivery": {
+    "surface": "main"
+  },
+  "presentation_locale": "en-US",
+  "created_at_ms": 1791858261624,
+  "updated_at_ms": 1791895118060
+}

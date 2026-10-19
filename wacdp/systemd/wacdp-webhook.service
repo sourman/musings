@@ -1,0 +1,14 @@
+[Unit]
+Description=wacdp local webhook receiver (daemon POSTs unreads here)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/hatch/workspace/wacdp
+ExecStart=/usr/bin/python3 /home/hatch/workspace/wacdp/webhook_inbox.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

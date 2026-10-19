@@ -1,0 +1,17 @@
+[Unit]
+Description=wacdp WhatsApp listen daemon (unmuted unread poll -> webhook)
+Wants=network-online.target wacdp-chrome.service
+After=network-online.target wacdp-chrome.service
+
+[Service]
+Type=simple
+WorkingDirectory=/home/hatch/workspace/wacdp
+Environment=WA_CDP_HTTP=http://127.0.0.1:9429
+Environment=WA_LISTEN_INTERVAL=20
+Environment=WA_LISTEN_LOG_FILE_ONLY=1
+ExecStart=/home/hatch/workspace/wacdp/supervise.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

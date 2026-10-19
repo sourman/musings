@@ -1,0 +1,14 @@
+[Unit]
+Description=wacdp local stack monitor (30s dumb health loop, tier 1)
+Wants=network-online.target
+After=network-online.target wacdp-daemon.service
+
+[Service]
+Type=simple
+WorkingDirectory=/home/hatch/workspace/wacdp
+ExecStart=/home/hatch/workspace/wacdp/monitor.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

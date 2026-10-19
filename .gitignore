@@ -1,0 +1,13 @@
+# Secrets, sessions, state, and logs never belong in this repo.
+*.env
+.proxy_env
+.chrome-profile/
+.synthetic_clicks
+*.jsonl
+state.json
+*.log
+boot-history.log
+.last_chrome_restart
+.monitor_backoff
+qr.png
+__pycache__/

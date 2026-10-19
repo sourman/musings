@@ -1,0 +1,15 @@
+[Unit]
+Description=wacdp local proxy forwarder (injects upstream egress-proxy auth)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/hatch/workspace/wacdp
+EnvironmentFile=/home/hatch/workspace/wacdp/.proxy_env
+ExecStart=/usr/bin/python3 /home/hatch/workspace/wacdp/proxy_forward.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

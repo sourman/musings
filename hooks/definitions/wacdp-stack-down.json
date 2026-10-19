@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "wacdp-stack-down",
+  "enabled": true,
+  "script_path": "~/hooks/scripts/wacdp-stack-down.sh",
+  "prompt": "The wacdp stack poller TRIED programmatic recovery and it FAILED (wake reason in the event) — this needs real judgment, not another restart. Investigate: check `systemctl status` for the failing unit, recent lines of ~/workspace/wacdp/daemon.log and ~/workspace/wacdp/monitor.log, whether http://127.0.0.1:9429/json/version answers, and ~/workspace/wacdp/state.json freshness. Run /home/hatch/workspace/wacdp/ensure-stack.sh once more if the failure looks transient; if a unit will not stay active or the CDP endpoint stays down, diagnose the root cause (disk, memory, crashed Chrome, wedged daemon) and report it. Surface a user-visible message only if the stack is still down or you found a root cause needing the user's decision.",
+  "poll_interval_secs": 60,
+  "script_timeout_secs": 600,
+  "delivery": {
+    "surface": "main"
+  },
+  "presentation_locale": "en-US",
+  "created_at_ms": 1791851011321,
+  "updated_at_ms": 1791857504059
+}
